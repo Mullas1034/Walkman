@@ -1,11 +1,15 @@
+import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from dotenv import load_dotenv
 
-# Spotify API credentials
-# You'll need to create these at https://developer.spotify.com/dashboard
-CLIENT_ID = 'your_client_id_here'
-CLIENT_SECRET = 'your_client_secret_here'
-REDIRECT_URI = 'http://localhost:8888/callback'
+# Load environment variables from .env file
+load_dotenv()
+
+# Spotify API credentials from environment variables
+CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI', 'http://localhost:8888/callback')
 
 # Scopes needed to access user's liked songs
 SCOPE = 'user-library-read'
@@ -13,12 +17,32 @@ SCOPE = 'user-library-read'
 
 def authenticate_spotify():
     """Authenticate with Spotify and return a Spotipy client."""
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    auth_manager = SpotifyOAuth(
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
         redirect_uri=REDIRECT_URI,
-        scope=SCOPE
-    ))
+        scope=SCOPE,
+        open_browser=True
+    )
+
+    # Check if we have a cached token
+    token_info = auth_manager.get_cached_token()
+
+    if not token_info:
+        # Get the authorization URL
+        auth_url = auth_manager.get_authorize_url()
+        print(f"\nPlease visit this URL to authorize the application:")
+        print(f"{auth_url}\n")
+        print("After authorizing, you'll be redirected to a page showing your authorization code.")
+        print("Copy the authorization code and paste it below.\n")
+
+        # Get the authorization code from user
+        auth_code = input("Enter the authorization code: ").strip()
+
+        # Exchange code for access token
+        token_info = auth_manager.get_access_token(auth_code, as_dict=True)
+
+    sp = spotipy.Spotify(auth=token_info['access_token'])
     return sp
 
 
