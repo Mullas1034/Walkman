@@ -87,9 +87,14 @@ def main():
     liked_songs = get_all_liked_songs(sp)
 
     print(f"\nTotal liked songs: {len(liked_songs)}")
-    print("\nFirst 5 songs:")
-    for i, song in enumerate(liked_songs[:5], 1):
-        print(f"{i}. {song['name']} by {song['artists']}")
+
+    # Write songs to text file
+    output_file = "liked_songs.txt"
+    with open(output_file, 'w', encoding='utf-8') as f:
+        for song in liked_songs:
+            f.write(f"{song['name']}\n")
+
+    print(f"Songs written to {output_file}")
 
 
 if __name__ == '__main__':
