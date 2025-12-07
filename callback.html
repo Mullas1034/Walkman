@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Authentication - Walkman</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(25, 20, 20, 0.95);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #1DB954;
+            margin-top: 0;
+        }
+        .success {
+            color: #1DB954;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .code-box {
+            background: #282828;
+            border: 2px solid #1DB954;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        button {
+            background: #1DB954;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1ed760;
+        }
+        .instructions {
+            background: rgba(29, 185, 84, 0.1);
+            border-left: 4px solid #1DB954;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify Authentication</h1>
+        <div id="content">
+            <p>Processing authentication...</p>
+        </div>
+    </div>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function displayAuth() {
+            const code = getUrlParameter('code');
+            const error = getUrlParameter('error');
+            const contentDiv = document.getElementById('content');
+
+            if (error) {
+                contentDiv.innerHTML = `
+                    <p class="error">Authentication failed: ${error}</p>
+                    <p>Please close this window and try again.</p>
+                `;
+            } else if (code) {
+                contentDiv.innerHTML = `
+                    <p class="success">✓ Authentication successful!</p>
+                    <p>Copy the authorization code below and paste it into your terminal:</p>
+                    <div class="code-box" id="authCode">${code}</div>
+                    <button onclick="copyCode()">Copy Code</button>
+                    <div class="instructions">
+                        <strong>Next steps:</strong>
+                        <ol>
+                            <li>Click the "Copy Code" button above</li>
+                            <li>Go back to your terminal</li>
+                            <li>Paste the code when prompted</li>
+                            <li>You can close this window after copying</li>
+                        </ol>
+                    </div>
+                `;
+            } else {
+                contentDiv.innerHTML = `
+                    <p class="error">No authorization code found.</p>
+                    <p>Please close this window and try the authentication process again.</p>
+                `;
+            }
+        }
+
+        function copyCode() {
+            const code = document.getElementById('authCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const button = document.querySelector('button');
+                button.textContent = '✓ Copied!';
+                button.style.background = '#1ed760';
+                setTimeout(() => {
+                    button.textContent = 'Copy Code';
+                    button.style.background = '#1DB954';
+                }, 2000);
+            }).catch(() => {
+                alert('Failed to copy. Please select and copy the code manually.');
+            });
+        }
+
+        displayAuth();
+    </script>
+</body>
+</html>
