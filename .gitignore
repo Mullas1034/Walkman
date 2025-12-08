@@ -8,3 +8,13 @@ __pycache__/
 venv/
 env/
 liked_songs.txt
+youtube_urls.txt
+test_songs.txt
+test_youtube_urls.txt
+downloaded_songs/
+liked_songs/
+test_downloads/
+completed_downloads.txt
+
+# FFmpeg executables
+*.exe

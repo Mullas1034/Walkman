@@ -1,2 +1,10 @@
 spotipy==2.23.0
 python-dotenv==1.0.0
+yt-dlp
+
+# Optional: For youtube_convert.py (Selenium-based downloader)
+selenium
+webdriver-manager
+
+# Note: yt-dlp requires FFmpeg to be installed on your system
+# Download from: https://ffmpeg.org/download.html

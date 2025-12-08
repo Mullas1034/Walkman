@@ -92,7 +92,7 @@ def main():
     output_file = "liked_songs.txt"
     with open(output_file, 'w', encoding='utf-8') as f:
         for song in liked_songs:
-            f.write(f"{song['name']}\n")
+            f.write(f"{song['name']} - {song['artists']}\n")
 
     print(f"Songs written to {output_file}")
 
