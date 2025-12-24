@@ -1,10 +1,24 @@
-spotipy==2.23.0
-python-dotenv==1.0.0
-yt-dlp
+# Walkman Requirements
+# Python 3.8+ required
 
-# Optional: For youtube_convert.py (Selenium-based downloader)
-selenium
-webdriver-manager
+# Spotify API
+spotipy==2.23.0
+
+# YouTube Downloading
+yt-dlp==2023.10.13
+
+# Audio Metadata
+mutagen==1.47.0
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# HTTP Requests
+requests==2.31.0
+
+# Windows COM Automation (iTunes)
+# Note: Windows-only, install manually on other platforms
+pywin32==306; platform_system == "Windows"
 
 # Note: yt-dlp requires FFmpeg to be installed on your system
 # Download from: https://ffmpeg.org/download.html

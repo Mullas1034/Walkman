@@ -1,0 +1,44 @@
+HOW TO EXPORT YOUTUBE COOKIES FOR AGE-RESTRICTED VIDEOS
+========================================================
+
+The remaining 3 songs require YouTube authentication to download.
+Follow these steps to export your YouTube cookies:
+
+STEP 1: Install Cookie Export Extension
+----------------------------------------
+1. Open Chrome
+2. Go to: https://chrome.google.com/webstore/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc
+3. Click "Add to Chrome"
+4. Click "Add extension"
+
+STEP 2: Export YouTube Cookies
+-------------------------------
+1. Go to YouTube.com (make sure you're logged in)
+2. Click the "Get cookies.txt LOCALLY" extension icon in Chrome
+3. Click "Export" or "Download"
+4. Save the file as "cookies.txt" in: C:\Users\Kieran\Walkman\
+
+STEP 3: Run the Download Script
+--------------------------------
+1. Open Command Prompt
+2. Run: cd C:\Users\Kieran\Walkman
+3. Run: python youtube_download.py
+
+The script will automatically detect and use the cookies.txt file!
+
+REMAINING SONGS (3):
+-------------------
+1. First Fuck - 6LACK, Jhené Aiko
+   https://www.youtube.com/watch?v=YMx2S9alPnk
+
+2. FUCK the Industry - $uicideboy$
+   https://www.youtube.com/watch?v=egzz-mIcBuI
+
+3. Death and All His Friends - Coldplay
+   https://www.youtube.com/watch?v=V6XJnuFG3UE
+
+ALTERNATIVE: Manual Download
+-----------------------------
+If cookie export doesn't work, you can:
+1. Manually download these 3 songs from YouTube while logged in
+2. Place them in: C:\Users\Kieran\Walkman\downloaded_songs\

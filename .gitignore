@@ -1,20 +1,77 @@
+# Environment and Secrets
 .env
 .cache
+cookies.txt
+
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
+
+# Virtual Environments
 venv/
 env/
-liked_songs.txt
-youtube_urls.txt
-test_songs.txt
-test_youtube_urls.txt
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data Files (contains personal music data)
+data/
+!data/.gitkeep
+
+# Music Files (MP3s)
+music/
+!music/.gitkeep
+
+# Logs
+logs/
+!logs/.gitkeep
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# Distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
+*.db
+
+# Old/Legacy Files (will be archived)
 downloaded_songs/
 liked_songs/
+discovered_songs/
 test_downloads/
-completed_downloads.txt
+temp_for_itunes/
+*.txt
+!requirements.txt
+!EXPORT_COOKIES_INSTRUCTIONS.txt
 
-# FFmpeg executables
-*.exe
+# Old Scripts (archived)
+spotify_liked_songs.py
+youtube_search.py
+youtube_download.py
+youtube_convert.py
+embed_metadata.py
+discover_music.py
+integrate_discoveries.py
+spotify_metadata_demo.py
+
+# JSON Files (personal data)
+*.json
+!.vscode/*.json
